@@ -36,16 +36,36 @@ fi
 COUNT=0
 while [[ "$COUNT" != "$RUN_FOREVER" ]];
 do
-	if [[ "$1" != "forever" ]];
 	ALL_PTS=$(who | grep pts)
 	ALL_PTS_BUT_MINE=$(echo "$ALL_PTS" | grep -v "$CURRENT_PTS")
 	
+	# checking for "awk" binary
+	HAS_AWK=$(which awk)
+
+	# checking fot "sed" binary
+	HAS_SED=$(which sed)
+
+	# trying out the "sed" binary
+	if [[ "$HAS_SED" != "" ]];
+	then
+		echo "[RUNNING LOG] 'sed' is available!"
+		PTSES=$(echo "$ALL_PTS_BUT_MINE" | sed -E "s/.*(pts\/[0-9]+).*/\1/")
+	fi
+
+	# trying out the "awk" binary
+	if [[ "$HAS_AWK" != "" ]];
+	then
+		echo "[RUNNING LOG] 'awk' is available!"
+		PTSES=$(echo "$ALL_PTS_BUT_MINE" | awk '{print $2}')
+	fi
+
 	# looping through found sessions
 	for PTS_SESSION in $PTSES;
 	do
 		echo "[OPERATION LOG] Spamming '${PTS_SESSION}'..."
-		OPERATION=$(eval "${SPAM_COMMAND}" > ${PTS_SESSION})
-
+		OPERATION=$(eval "${SPAM_COMMAND}" > /dev/${PTS_SESSION} &)
+	
+		echo "$PTS_SESSION"
 		if [[ "$OPERATION" == "" ]];
 		then
 			echo "[OPERATION LOG] Spammed '$PTS_SESSION'"

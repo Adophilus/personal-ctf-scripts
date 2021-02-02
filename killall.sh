@@ -17,7 +17,6 @@ fi
 COUNT=0
 while [[ "$COUNT" != "$RUN_FOREVER" ]];
 do
-	if [[ "$1" != "forever" ]];
 	ALL_PTS=$(who | grep pts)
 	ALL_PTS_BUT_MINE=$(echo "$ALL_PTS" | grep -v "$CURRENT_PTS")
 	
@@ -30,13 +29,14 @@ do
 	# trying out the "sed" binary
 	if [[ "$HAS_SED" != "" ]];
 	then
-		echo "[RUNNING LOG] Does not have awk!"
+		echo "[RUNNING LOG] 'sed' is available!"
 		PTSES=$(echo "$ALL_PTS_BUT_MINE" | sed -E "s/.*(pts\/[0-9]+).*/\1/")
 	fi
 
 	# trying out the "awk" binary
 	if [[ "$HAS_AWK" != "" ]];
 	then
+		echo "[RUNNING LOG] 'awk' is available!"
 		PTSES=$(echo "$ALL_PTS_BUT_MINE" | awk '{print $2}')
 	fi
 
