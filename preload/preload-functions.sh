@@ -15,10 +15,6 @@ logLog () {
 
 replaceVariableDefinitions () {
 	local preload_data="$1"
-	declare -A VARIABLES=(
-		["HAS_PYTHON"]="\$(which python)"
-		["HAS_PYTHON3"]="\$(which python3)"
-	)
 
 	for variable in "${!VARIABLES[@]}";
 	do
