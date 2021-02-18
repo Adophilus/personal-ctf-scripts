@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # retrieve function definitions
-source ./preload-functions.sh
+source ./bin/preload-functions.sh
 
 # retrieve variable definitions
-source ./preload-variables.sh
+source ./bin/preload-variables.sh
 
 for preload in $PRELOADS;
 do

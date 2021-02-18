@@ -1,0 +1,4 @@
+- Create a chattr preload
+- Create a killall preload
+- Modify all chattr payloads to use the absolute filepath of chattr
+- Modify all chatty payloads: if gcc is not available then it should just keep moving the chattr binary around with mktemp

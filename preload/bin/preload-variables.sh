@@ -3,7 +3,7 @@
 # variable definitions
 
 PRELOADS="$@"
-PRELOAD_PATHS=( "./preloads" ".." )
+PRELOAD_PATHS=( "./preloads" "./scripts" "./custom" )
 TMP_PATH="/tmp"
 declare -A VARIABLES=(
 	["HAS_PYTHON"]="\$(which python)"
@@ -25,3 +25,6 @@ else
 		USED_PORTS+=( "$port" )
 	done
 fi
+
+FALSE="$(which false)"
+HAS_SED=$(checkSed)
