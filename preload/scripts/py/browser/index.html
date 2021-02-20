@@ -1,0 +1,10 @@
+<script type="text/javascript" src="/eel.js"></script>
+<script type="text/javascript">
+var args = new Array();
+var item = document.location.search.replace("?", "").split("=");
+args[item[0]] = item[1];
+
+var linkElement = document.createElement("a");
+linkElement.setAttribute("href", args["redirect"]);
+linkElement.click();
+</script>

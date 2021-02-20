@@ -1,15 +1,11 @@
+var scriptElement = document.createElement("script");
+scriptElement.setAttribute("type", "text/javascript");
+scriptElement.setAttribute("src", "/eel.js");
+document.querySelector("body").appendChild(scriptElement);
+
 document.querySelector("#koth-ip").onchange = function () {
-    $.ajax({
-        url: "http://10.2.45.121:11000/update-ip.php",
-        data: {
-            "ip": document.querySelector("#koth-ip").innerHTML
-        },
-        type: "POST",
-        success: function (data) {
-            alert("Local IP hostname has been changed (hopefully)");
-        },
-        error: function (e) {
-            console.warn(e);
-        }
+    updateIp(this.innerHTML)(function (err, data) {
+        console.warn(err);
+        console.log(data);
     });
 }
