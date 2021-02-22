@@ -21,4 +21,4 @@ then
     exit
 fi
 
-echo "$HOSTS_FILE_CONTENT" | sed -E "s/^([0-9]+.){4}\s$HOSTNAME/$IP_ADDRESS\tkoth.thm/" > /etc/hosts
+echo "$HOSTS_FILE_CONTENT" | sed -E "s/^([0-9]+\.){3}[0-9]+(.*)$HOSTNAME(.*)/$IP_ADDRESS\2$HOSTNAME\3/" > /etc/hosts
