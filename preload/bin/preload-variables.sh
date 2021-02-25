@@ -15,8 +15,8 @@ declare -A VARIABLES=(
 	["SERVER_HTTP_PORT"]="11000"
 	["SERVER_PORT"]="11000"
 	["USERNAME"]="adophilus"
-	["TERMINAL_ROWS"]="20"
-	["TERMINAL_COLUMNS"]="100"
+	["TERMINAL_ROWS"]="$(stty size | cut -d ' ' -f 1)"
+	["TERMINAL_COLUMNS"]="$(stty size | cut -d ' ' -f 2)"
 )
 
 PORTS_FILE="/tmp/preload-ports.txt"
